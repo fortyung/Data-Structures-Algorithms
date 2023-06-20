@@ -43,7 +43,7 @@ for i in lop:
     print(j, i)
 # O(n^2) [nested loop]
 #--------------------------------------------
-# O(n!) [ adding s loop for every element]
+# O(n!) [ adding a loop for every element]
 
 
 #----------------------------------------
@@ -63,7 +63,3 @@ def booo(n):
     lop.append('hi')
 # O(n)
 # Dependent on the input and complies in memory
-
-# Good Code
-#   1. Readable
-#   2. Scalable -- Time and Space complexity(you need to trade one for the other)
