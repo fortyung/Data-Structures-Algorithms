@@ -24,13 +24,13 @@ class MyArray:
         if self.__length == 0:
             return None
         return self.__data[index]
-        # O(n)
+        # O(1)
 
     def push(self, item):
         self.__data[self.__length] = item
         self.__length += 1
         return self.__data
-        # O(n)
+        # O(1)
 
     def pop(self):
         if self.__length == 0:
@@ -40,18 +40,20 @@ class MyArray:
         popped_item = self.__data[self.__length]
         del self.__data[self.__length]
         return popped_item
-        # O(n)
+        # O(1)
     
     def delete(self, index):
         item = self.__data[index]
         self.__unshift(index)
         return item
+        # O(n)
     
     def __unshift(self, index): # Abstraction: This class is not accessable outside this class
         for i in range(index, self.__length - 1):
             self.__data[i] = self.__data[i + 1]
         del self.__data[self.__length - 1]
         self.__length -= 1
+        # O(n)
 
     def __repr__(self):
         return str(self.__data)
