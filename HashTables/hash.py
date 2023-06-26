@@ -1,5 +1,20 @@
 class HashTable:
 
+    """
+    A class representing a custom hash table.
+
+    Attributes:
+        size (int): The size of the object.
+
+    Methods:
+        set(key,value): Adds new entries to the hash table.
+        _hash(key): Creates a hash code for the key (an address).
+        get(key): Retrivies the value for a specified key.
+        keys(): Retrivies all keys.
+        values(): Retrivies all values.
+
+    """
+
     def __init__(self, size) -> None:
         self.data = [None] * size 
 
@@ -16,14 +31,14 @@ class HashTable:
     #     return self.data
 
     def set(self, key, value):
-        address = self.hash(key)
+        address = self._hash(key)
         if self.data[address] == None:
             self.data[address] = []
               
         self.data[address].append([key, value])
         return self.data
     
-    def hash(self, hkey): # O(1)
+    def _hash(self, hkey): # O(1)
         i = 0
         hash = 0
 
@@ -33,7 +48,7 @@ class HashTable:
         return hash
 
     def get(self, gkey): # O(1)
-        address = self.hash(gkey)
+        address = self._hash(gkey)
 
         for item in range(len(self.data[address])):
             if gkey in self.data[address][item]:
@@ -52,7 +67,7 @@ class HashTable:
                 #     for item in self.data[i]:
                 #         key_lis.append(item[0])
                 
-                # ''' incase we have elemets sharing the same address '''
+                # ''' incase we have elements sharing the same address '''
  
         return key_lis
  
