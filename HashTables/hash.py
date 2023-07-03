@@ -30,7 +30,7 @@ class HashTable:
     #         self.data[address] = [key, value]
     #     return self.data
 
-    def set(self, key, value):
+    def set(self, key, value): # O(1)
         address = self._hash(key)
         if self.data[address] == None:
             self.data[address] = []
@@ -50,9 +50,9 @@ class HashTable:
     def get(self, gkey): # O(1)
         address = self._hash(gkey)
 
-        for item in range(len(self.data[address])):
-            if gkey in self.data[address][item]:
-                return self.data[address][item][1]
+        for i in range(len(self.data[address])):
+            if gkey in self.data[address][i]:
+                return self.data[address][i][1]
             
         return False
     
@@ -61,11 +61,11 @@ class HashTable:
         
         for i in range(len(self.data)):
             if self.data[i]:
-                # if len(self.data[i]) < 1:
+                if len(self.data[i]) < 1:
                     key_lis.append(self.data[i][0][0])
-                # else:
-                #     for item in self.data[i]:
-                #         key_lis.append(item[0])
+                else:
+                    for item in self.data[i]:
+                        key_lis.append(item[0])
                 
                 # ''' incase we have elements sharing the same address '''
  
