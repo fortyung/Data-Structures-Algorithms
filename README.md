@@ -2,3 +2,4 @@
 -  Big O
 -  Arrays
 -  Hash Tables
+-  Linked List
