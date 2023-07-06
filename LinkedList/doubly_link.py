@@ -1,19 +1,19 @@
 class Node:
     def __init__(self, value) -> None:
-        self.value = {"value": value, "next": None}
+        self.value = {"value": value, "previous": None, "next": None}
 
 
-class LinkedList(Node):
+class DoublyLinkedList(Node):
     """
-    A class representing a custom Linked List (LL).
+    A class representing a custom Doubly Linked List (LL).
 
     Attributes:
         Value(any): The first item in the LL.
 
     Methods:
-        append(value): Appends a new value to the end of the list and points its to the value before it.
+        append(value): Appends a new value to the end of the list and and points its to the value before and after it.
         prpend(value): Appends a new value to the start of the list.
-        insert(index, value): inserts a value at a specific index and points its to the value before it.
+        insert(index, value): inserts a value at a specific index and points its to the value before and after it.
         __traverse(index): Loops to a particular index.
         remove(index): Removes a value at the index
         printList(): Outputs an array of the values.
@@ -22,18 +22,20 @@ class LinkedList(Node):
 
     def __init__(self, value) -> None:
         super().__init__(value)
-        self.head = {"value": value, "next": None}
+        self.head = {"value": value, "previous": None, "next": None}
         self.tail = self.head
         self.length = 1
 
     def append(self, value):
         newNode = Node(value)
+        newNode.value["previous"] = self.tail  # Difference
         self.tail["next"] = newNode.value
         self.tail = newNode.value
         self.length += 1
 
     def prepend(self, value):
         newNode = Node(value)
+        self.head["previous"] = newNode.value
         newNode.value["next"] = self.head
         self.head = newNode.value
         self.length += 1
@@ -45,32 +47,29 @@ class LinkedList(Node):
             return self.prepend(value)
 
         newNode = Node(value)
-        leader = self.__traverse(index - 1)
+        leader = self.traverse(index - 1)
         hold = leader["next"]
+
+        newNode.value["previous"] = leader
+
         leader["next"] = newNode.value
+
+        hold["previous"] = newNode.value
+
         newNode.value["next"] = hold
         self.length += 1
 
-    def __traverse(self, index):
-        # count = 0
-        # currentNode = self.head
-
-        # while count != index:
-        #     currentNode = currentNode["next"]
-        #     count += 1
-        currentNode = self.head
-        for i in range(index):
-            currentNode = currentNode["next"]
-        return currentNode
-
     def remove(self, index):
         if index == 0:
-            self.head = self.__traverse(1)
+            self.head = self.traverse(1)
         else:
-            leader = self.__traverse(index - 1)
+            leader = self.traverse(index - 1)
             itemTodel = leader["next"]
+
             hold = itemTodel["next"]
+            hold["previous"] = leader
             leader["next"] = hold
+
             self.length -= 1
 
     def printList(self):
@@ -82,25 +81,27 @@ class LinkedList(Node):
             currentNode = currentNode["next"]
         return array
 
-    def reverse(self):
-        pass
+    def traverse(self, index):
+        currentNode = self.head
+        for i in range(index):
+            currentNode = currentNode["next"]
+        return currentNode
 
     def __repr__(self):
         return f"head: {self.head},\n\ttail: {self.tail},\n\tlength: {self.length}"
 
 
-obj = LinkedList(10)
+obj = DoublyLinkedList(10)
 
 obj.append(16)
-obj.prepend(14)
-# obj.prepend(20)
-# obj.append(5)
+obj.prepend(22)
 
+obj.insert(1, 99)
 
-# obj.insert(1, 99)
-# print(obj.printList())
+print(obj.printList())
 
-obj.remove(0)
-# print(obj.printList())
+obj.remove(2)
+
+print(obj.printList())
 
 print(obj)
