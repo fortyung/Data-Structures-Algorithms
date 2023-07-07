@@ -17,6 +17,7 @@ class LinkedList(Node):
         __traverse(index): Loops to a particular index.
         remove(index): Removes a value at the index
         printList(): Outputs an array of the values.
+        reverse(): Reverses the linked list.
 
     """
 
@@ -83,7 +84,21 @@ class LinkedList(Node):
         return array
 
     def reverse(self):
-        pass
+        if self.head["next"] == None:
+            return self.head
+
+        first = self.head
+        self.tail = self.head
+        second = first["next"]
+
+        while second != None:
+            temp = second["next"]
+            second["next"] = first
+            first = second
+            second = temp
+
+        self.head["next"] = None
+        self.head = first
 
     def __repr__(self):
         return f"head: {self.head},\n\ttail: {self.tail},\n\tlength: {self.length}"
@@ -98,9 +113,10 @@ obj.prepend(14)
 
 
 # obj.insert(1, 99)
-# print(obj.printList())
+print(obj.printList())
 
-obj.remove(0)
-# print(obj.printList())
+# obj.remove(0)
+obj.reverse()
+print(obj.printList())
 
 print(obj)
