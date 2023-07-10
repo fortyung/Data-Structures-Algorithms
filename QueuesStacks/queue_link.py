@@ -1,43 +1,45 @@
 class Node:
     def __init__(self, value) -> None:
-        self.value = {"value": value, "next": None}
+        self.value = value
+        self.next = None
 
 
-class Stack:
+class Queue:
     def __init__(self) -> None:
         self.first = None
         self.last = None
         self.length = 0
 
     def peek(self):
-        return self.first, self.last
+        return self.first.value if self.first else None
 
     def enqueue(self, value):
         newNode = Node(value)
 
         if self.length == 0:
-            self.first = newNode.value
-            self.last = self.first
+            self.first = newNode
+            self.last = newNode
         else:
-            self.last["next"] = newNode.value
-            self.last = newNode.value
+            self.last.next = newNode
+            self.last = newNode
 
         self.length += 1
-        return self.first
+        return newNode.value
 
     def dequeue(self):
-        if self.length == 0:
+        if not self.first:
             return None
-        if self.length == 1:
+        if self.first == self.last:
             self.last = None
 
-        self.first = self.first["next"]
+        itemToDel = self.first.value
+        self.first = self.first.next
         self.length -= 1
 
-        return self.first, self.last
+        return itemToDel
 
 
-obj = Stack()
+obj = Queue()
 obj.enqueue("google")
 obj.enqueue("youtube")
 obj.enqueue("udemy")
