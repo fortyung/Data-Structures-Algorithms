@@ -4,3 +4,4 @@
 -  Hash Tables
 -  Linked List
 -  Queues and Stacks
+-  Trees
