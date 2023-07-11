@@ -45,12 +45,79 @@ class BinarySearchTree:
             currentNode = self.root
             while currentNode:
                 if value < currentNode.value:
-                    currentNode = currentNode.left
+                    currentNode = currentNode.left1
                 elif value > currentNode.value:
                     currentNode = currentNode.right
                 elif value == currentNode.value:
                     return currentNode
             return False
+
+    def remove(self, value):  # Needs some work lol
+        if not self.root:
+            return False
+
+        currentNode = self.root
+        parentNode = None
+
+        while currentNode:
+            # Finding the Node.
+            if value > currentNode.value:
+                parentNode = currentNode
+                currentNode = currentNode.right
+            elif value < currentNode.value:
+                parentNode = currentNode
+                currentNode.left
+            elif value == currentNode.value:
+                # We have a match.
+
+                # No right child (value is the root Node).
+                if currentNode.right == None:
+                    if parentNode == None:
+                        self.root = currentNode.left
+                    # Update the root node to the value on the left Node.
+                    else:
+                        # make the left the parent node
+                        if currentNode.value < parentNode.value:
+                            parentNode.left = currentNode.left
+
+                        # make the right the parent node
+                        elif currentNode.value > parentNode.value:
+                            parentNode.right = currentNode.right
+
+                elif currentNode.right.left == None:
+                    currentNode.right.left = currentNode.left
+                    if not parentNode:
+                        self.root = currentNode.right
+                    else:
+                        # make the left the parent node
+                        if currentNode.value < parentNode.value:
+                            parentNode.left = currentNode.left
+
+                        # make the right the parent node
+                        elif currentNode.value > parentNode.value:
+                            parentNode.right = currentNode.right
+                else:
+                    # Right's left most child
+                    leftmost = currentNode.right.left
+                    leftmostParent = currentNode.right
+
+                    while leftmost.left != None:
+                        leftmostParent = leftmost
+                        leftmost = leftmost.left
+
+                    leftmostParent.left = leftmost.right
+                    leftmost.left = currentNode.left
+                    leftmost.right = currentNode.right
+
+                    if parentNode == None:
+                        self.root = leftmost
+
+                    else:
+                        if currentNode.value < parentNode.value:
+                            parentNode.left = leftmost
+                        elif currentNode.value > parentNode.value:
+                            parentNode.right = leftmost
+                return True
 
 
 def traverse(node):
@@ -64,15 +131,18 @@ def traverse(node):
 
 # Create the tree and insert nodes
 tree = BinarySearchTree()
-tree.insert(9)
-tree.insert(4)
-tree.insert(6)
+tree.insert(38)
 tree.insert(20)
-tree.insert(170)
-tree.insert(15)
-tree.insert(1)
-print(tree.lookup(0))
+tree.insert(70)
+tree.insert(8)
+tree.insert(31)
+tree.insert(30)
+tree.insert(37)
+tree.insert(35)
+tree.insert(36)
+print(tree.remove(0))
+# print(tree.lookup(0))
 
 # Convert the tree to JSON
-json_string = json.dumps(traverse(tree.root))
-print(json_string)
+# json_string = json.dumps(traverse(tree.root))
+# print(json_string)
