@@ -43,14 +43,14 @@ class BinarySearchTree:
 
         else:
             currentNode = self.root
-            while True:
+            while currentNode:
                 if value < currentNode.value:
                     currentNode = currentNode.left
                 elif value > currentNode.value:
                     currentNode = currentNode.right
                 elif value == currentNode.value:
                     return currentNode
-                return False
+            return False
 
 
 def traverse(node):
@@ -71,7 +71,7 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
-tree.lookup(9)
+print(tree.lookup(0))
 
 # Convert the tree to JSON
 json_string = json.dumps(traverse(tree.root))
