@@ -1,7 +1,9 @@
 # Data Structures and Algorithm
--  Big O
--  Arrays
--  Hash Tables
--  Linked List
--  Queues and Stacks
--  Trees
+- ## Data Structures
+    *  Big O
+    *  Arrays
+    *  Hash Tables
+    *  Linked List
+    *  Queues and Stacks
+    *  Trees
+    *  Graphs
