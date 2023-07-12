@@ -1,6 +1,6 @@
 # Data Structures and Algorithm
+*  Big O
 - ## Data Structures
-    *  Big O
     *  Arrays
     *  Hash Tables
     *  Linked List
