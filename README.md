@@ -1,4 +1,4 @@
-# Data Structures and Algorithm
+# Data Structures and Algorithms
 *  Big O
 - ## Data Structures
     *  Arrays
@@ -7,3 +7,4 @@
     *  Queues and Stacks
     *  Trees
     *  Graphs
+- ## Algorithms
