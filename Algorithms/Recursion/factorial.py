@@ -1,10 +1,7 @@
 def findFactorialRecursive(number):
     nextNumber = number - 1
 
-    if number == 0:
-        return 0
-
-    if number == 1:
+    if number <= 1:
         return number
 
     return number * findFactorialRecursive(nextNumber)
@@ -21,6 +18,6 @@ def findFactorialIterative(number):
     return num
 
 
-# print(findFactorialRecursive(5))
+print(findFactorialRecursive(0))
 
-print(findFactorialIterative(1))
+# print(findFactorialIterative(1))
