@@ -1,4 +1,4 @@
-def fibonacciIterative(n):
+def fibonacciIterative(n):  # O(n)
     if n < 2:
         return n
 
@@ -13,7 +13,7 @@ def fibonacciIterative(n):
     return fib
 
 
-def fibonacciRecursive(n):
+def fibonacciRecursive(n):  # O (2^n)
     if n < 2:
         return n
 
