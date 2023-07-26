@@ -1,4 +1,4 @@
-def findFactorialRecursive(number):
+def findFactorialRecursive(number):  # O(n)
     nextNumber = number - 1
 
     if number <= 1:
@@ -7,7 +7,7 @@ def findFactorialRecursive(number):
     return number * findFactorialRecursive(nextNumber)
 
 
-def findFactorialIterative(number):
+def findFactorialIterative(number):  # O(n)
     num = 1
     if number == 0:
         return 0
