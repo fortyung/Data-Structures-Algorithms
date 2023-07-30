@@ -9,3 +9,4 @@
     *  Graphs
 - ## Algorithms
     * Recursion
+    * Sorting
